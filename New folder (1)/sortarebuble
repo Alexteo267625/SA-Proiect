@@ -1,0 +1,58 @@
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <chrono> // Pentru măsurarea timpului
+
+using namespace std;
+
+// Funcție pentru sortarea prin metoda bulelor (optimizată)
+void bubbleSort(vector<int>& arr) {
+    int n = arr.size();
+    bool swapped;
+    for (int i = 0; i < n - 1; i++) {
+        swapped = false;
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);
+                swapped = true;
+            }
+        }
+        // Dacă nu s-au făcut schimbări într-o parcurgere, lista e sortată
+        if (!swapped) break;
+    }
+}
+
+int main() {
+    ifstream inputFile("lista.txt");
+    
+    if (!inputFile.is_open()) {
+        cerr << "Eroare: Nu am putut deschide fisierul list.txt!" << endl;
+        return 1;
+    }
+
+    int n;
+    inputFile >> n; // Citim numărul de elemente
+
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++) {
+        inputFile >> arr[i]; // Citim elementele
+    }
+    inputFile.close();
+
+    cout << "Am citit " << n << " elemente." << endl;
+
+    // Începem măsurarea timpului
+    auto start = chrono::high_resolution_clock::now();
+
+    bubbleSort(arr);
+
+    // Oprim măsurarea timpului
+    auto end = chrono::high_resolution_clock::now();
+
+    // Calculăm durata în secunde (ca număr real)
+    chrono::duration<double> duration = end - start;
+
+    cout << "Bubble Sort a durat: " << duration.count() << " secunde" << endl;
+
+    return 0;
+}

@@ -1,0 +1,43 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <ctime>   // Pentru time()
+#include <cstdlib> // Pentru rand() și srand()
+
+using namespace std;
+
+int main() {
+    // 1. Inițializăm generatorul cu timpul curent pentru a avea numere diferite la fiecare rulare
+    srand(static_cast<unsigned int>(time(0)));
+
+    string numeFisier = "lista.txt";
+    int n = 50000;          // Numărul de elemente
+    int valoareMin = 1;     // Valoarea minimă a unui număr
+    int valoareMax = 100000; // Valoarea maximă a unui număr
+
+    ofstream g(numeFisier);
+
+    if (g.is_open()) {
+        // 2. Scriem n pe prima linie
+        g << n << "\n";
+
+        // 3. Generăm și scriem cele n numere
+        for (int i = 0; i < n; i++) {
+            int numarRandom = valoareMin + (rand() % (valoareMax - valoareMin + 1));
+            g << numarRandom;
+            
+            // Adăugăm spațiu între numere, dar nu și după ultimul
+            if (i < n - 1) {
+                g << " ";
+            }
+        }
+
+        g.close();
+        cout << "Succes! Fisierul '" << numeFisier << "' a fost generat cu " << n << " numere." << endl;
+    } else {
+        cerr << "Eroare: Nu am putut crea fisierul!" << endl;
+        return 1;
+    }
+
+    return 0;
+}
