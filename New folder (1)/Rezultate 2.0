@@ -1,0 +1,6 @@
+Algoritm	            Best	       Average	      Worst	           Memorie                Timp de executie(50 de elem)      Timp de exxecutie (50.0000)
+Bubble Sort	          O(n)	    O(n²)	            O(n²)	            O(1)                    2.16786                                18.98787
+Insertion Sort	      O(n)	    O(n²)	            O(n²)	            O(1)                    1.20980                                 5.09867
+Selection Sort	      O(n²)	    O(n²)	            O(n²)	            O(1)                    5.55608                                 7.89145
+Merge Sort	         O(n log n)	O(n log n)	      O(n log n)	      O(n)                    2.54508                                 0.03675
+Quick Sort	        O(n log n)	O(n log n)	      O(n²)	            O(log n)                0.14536                                 0.01345
