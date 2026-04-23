@@ -1,0 +1,188 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[romanian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+\geometry{margin=2.5cm}
+
+\title{Analiza Algoritmilor de Sortare}
+\author{Student}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+\section{Introducere}
+Sortarea reprezintă un proces fundamental în informatică, având ca scop aranjarea elementelor unei colecții într-o anumită ordine (crescătoare sau descrescătoare). Aceasta este utilizată în numeroase domenii, inclusiv baze de date, inteligență artificială și procesarea datelor.
+
+Importanța algoritmilor de sortare derivă din faptul că eficiența lor influențează performanța altor algoritmi, cum ar fi cei de căutare. De exemplu, căutarea binară necesită un vector sortat pentru a funcționa eficient.
+
+În această lucrare sunt analizați cinci algoritmi clasici de sortare: Bubble Sort, Insertion Sort, Selection Sort, Merge Sort și Quick Sort, atât din punct de vedere teoretic cât și practic.
+
+\section{Algoritmi de sortare}
+
+\subsection{Bubble Sort}
+Bubble Sort este unul dintre cei mai simpli algoritmi de sortare. Acesta parcurge lista de mai multe ori, comparând elementele adiacente și interschimbându-le dacă sunt în ordine greșită.
+
+Procesul se repetă până când lista devine sortată. O optimizare comună este utilizarea unui flag care detectează dacă s-au făcut schimbări într-o parcurgere.
+
+\textbf{Avantaje:}
+\begin{itemize}
+    \item Ușor de implementat
+    \item Nu necesită memorie suplimentară
+\end{itemize}
+
+\textbf{Dezavantaje:}
+\begin{itemize}
+    \item Ineficient pentru liste mari
+\end{itemize}
+
+\textbf{Complexitate:}
+\[
+O(n) \text{ (best)}, \quad O(n^2) \text{ (average și worst)}
+\]
+
+\subsection{Insertion Sort}
+Insertion Sort construiește treptat o secvență sortată, inserând fiecare element în poziția corectă.
+
+Este similar modului în care oamenii sortează cărțile de joc în mână.
+
+\textbf{Avantaje:}
+\begin{itemize}
+    \item Eficient pentru liste mici
+    \item Foarte rapid pentru liste aproape sortate
+\end{itemize}
+
+\textbf{Dezavantaje:}
+\begin{itemize}
+    \item Ineficient pentru seturi mari de date
+\end{itemize}
+
+\textbf{Complexitate:}
+\[
+O(n) \text{ (best)}, \quad O(n^2) \text{ (average și worst)}
+\]
+
+\subsection{Selection Sort}
+Selection Sort împarte lista în două părți: una sortată și una nesortată. La fiecare pas, selectează cel mai mic element din partea nesortată și îl mută în partea sortată.
+
+\textbf{Avantaje:}
+\begin{itemize}
+    \item Număr redus de swap-uri
+\end{itemize}
+
+\textbf{Dezavantaje:}
+\begin{itemize}
+    \item Complexitate constantă: O(n^2), indiferent de caz
+\end{itemize}
+
+\textbf{Complexitate:}
+\[
+O(n^2) \text{ pentru toate cazurile}
+\]
+
+\subsection{Merge Sort}
+Merge Sort este un algoritm de tip „divide et impera”. Lista este împărțită recursiv în două jumătăți până când se ajunge la liste de un singur element, după care acestea sunt interclasate.
+
+\textbf{Avantaje:}
+\begin{itemize}
+    \item Complexitate eficientă garantată
+    \item Stabil
+\end{itemize}
+
+\textbf{Dezavantaje:}
+\begin{itemize}
+    \item Necesită memorie suplimentară
+\end{itemize}
+
+\textbf{Complexitate:}
+\[
+O(n \log n) \text{ pentru toate cazurile}
+\]
+
+\subsection{Quick Sort}
+Quick Sort este de asemenea bazat pe strategia divide et impera. Se alege un pivot și se împarte lista în două subliste: elemente mai mici și elemente mai mari decât pivotul.
+
+\textbf{Avantaje:}
+\begin{itemize}
+    \item Foarte rapid în practică
+    \item Folosește puțină memorie
+\end{itemize}
+
+\textbf{Dezavantaje:}
+\begin{itemize}
+    \item Performanță slabă în cazul cel mai defavorabil
+\end{itemize}
+
+\textbf{Complexitate:}
+\[
+O(n \log n) \text{ (best și average)}, \quad O(n^2) \text{ (worst)}
+\]
+
+\section{Analiză comparativă}
+Algoritmii de sortare pot fi comparați în funcție de complexitate, consum de memorie și comportament în practică.
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Algoritm & Best & Average & Worst & Memorie \\
+\hline
+Bubble Sort & O(n) & O(n^2) & O(n^2) & O(1) \\
+Insertion Sort & O(n) & O(n^2) & O(n^2) & O(1) \\
+Selection Sort & O(n^2) & O(n^2) & O(n^2) & O(1) \\
+Merge Sort & O(n log n) & O(n log n) & O(n log n) & O(n) \\
+Quick Sort & O(n log n) & O(n log n) & O(n^2) & O(log n) \\
+\hline
+\end{tabular}
+\end{center}
+
+Din punct de vedere practic, algoritmii de tip $O(n^2)$ devin ineficienți pentru volume mari de date, în timp ce algoritmii $O(n \log n)$ sunt preferați.
+
+\section{Analiză experimentală}
+În cadrul testelor efectuate, s-au observat diferențe semnificative între algoritmi în funcție de dimensiunea datelor.
+
+Pentru seturi mici (ex: 50 de elemente), diferențele sunt relativ reduse. În schimb, pentru seturi mari (ex: 50.000 elemente), algoritmii ineficienți devin mult mai lenți.
+
+Rezultatele confirmă teoria complexității:
+\begin{itemize}
+    \item Algoritmii $O(n^2)$ cresc foarte rapid
+    \item Algoritmii $O(n \log n)$ rămân eficienți
+\end{itemize}
+
+\section{Concluzii}
+Algoritmii de sortare diferă semnificativ în funcție de performanță și utilizare.
+
+Pentru aplicații reale:
+\begin{itemize}
+    \item Se recomandă Quick Sort pentru viteză
+    \item Merge Sort pentru stabilitate
+    \item Insertion Sort pentru seturi mici
+\end{itemize}
+
+Alegerea algoritmului potrivit depinde de context, dimensiunea datelor și resursele disponibile.
+
+\begin{thebibliography}{9}
+
+\bibitem{cormen}
+Thomas H. Cormen et al.,
+\textit{Introduction to Algorithms}, MIT Press.
+
+\bibitem{knuth}
+Donald E. Knuth,
+\textit{The Art of Computer Programming}, Addison-Wesley.
+
+\bibitem{geeks}
+Sorting Algorithms,
+\url{https://www.geeksforgeeks.org/sorting-algorithms/}
+
+\end{thebibliography}
+
+\end{document}
